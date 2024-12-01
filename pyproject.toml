@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "advent-of-code-2024"
+version = "0.1.0"
+description = ""
+authors = ["Yorick van Zweeden <git@yorickvanzweeden.nl>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.32.3"
+types-requests = "^2.32.0.20241016"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+devpi-client = "^6.0.5"
+mypy = "^1.4.1"
+pre-commit = "^3.3.3"
+pytest = "^7.4.0"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
+pytest-github-actions-annotate-failures = "^0.2.0"
+pytest-mock = "^3.11.1"
+pytest-runner = "^6.0.0"
+ruff = "^0.0.284"
+shellcheck-py = "^0.9.0.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+
+[tool.pytest.ini_options]
+addopts = "--cov-report xml:coverage.xml --cov src --cov-branch --cov-fail-under 90 --cov-append -m 'not integration'"
+pythonpath = [
+    "src"
+]
+testpaths = "tests"
+junit_family = "xunit2"
+markers = [
+    "integration: marks as integration test",
+    "notebooks: marks as notebook test",
+    "gpu: marks as gpu test",
+    "slow: marks tests as slow",
+    "unit: fast offline tests",
+]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+exclude = ["scripts", "docs", "tests"]
+warn_unused_ignores = false
+disallow_any_generics = false
+
+[tool.ruff]
+exclude = ["scripts", "docs", "tests"]
+target-version = "py310"
+line-length = 120
+
+# E: PEP8 (pycodestyle)
+# F: PyFlakes (syntax errors)
+# I: isort (import sorting)
+# B: flake8-bugbear
+# ARG: flake8-unused-arguments
+# RUF200: invalid-pyproject-toml
+# RET: flake8-return (checks return values)
+# UP: pypgrade (automatically upgrade syntax for newer versions of the language)
+# PGH: pygrep-hooks (regex-based checks)
+select = ["E", "F", "I", "B", "ARG", "RUF200", "RET", "UP", "PGH"]
+ignore = ["B008", "ARG004", "E741"]

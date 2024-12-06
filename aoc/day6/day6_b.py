@@ -45,8 +45,13 @@ def main() -> None:
             if (y, x) == starting_position:
                 continue
 
+            # Restore grid
             data_backup = data.copy()
+
+            # Place blockade
             data[y] = data[y][:x] + "X" + data[y][x + 1 :]
+
+            # Initialize
             current_position = starting_position
             current_direction = starting_direction
 
@@ -56,10 +61,13 @@ def main() -> None:
             while True:
                 new_pos = sum_t(current_position, directions[current_direction])
                 indexed_value = str(new_pos + tuple(current_direction))
+
+                # Loop detected
                 if indexed_value in positions_visited:
                     loop_count += 1
                     break
 
+                # Out-of-bounds
                 if new_pos[0] < 0 or new_pos[1] < 0:
                     break
                 if new_pos[0] >= len(data) or new_pos[1] >= len(data[0]):

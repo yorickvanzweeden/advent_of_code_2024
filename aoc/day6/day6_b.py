@@ -66,16 +66,8 @@ def main() -> None:
                     break
 
                 # Continue forward
-                if (
-                    data[new_pos[0]][new_pos[1]] == "."
-                    or data[new_pos[0]][new_pos[1]] == "O"
-                ):
+                if data[new_pos[0]][new_pos[1]] == ".":
                     positions_visited.add(indexed_value)
-                    data[new_pos[0]] = (
-                        data[new_pos[0]][: new_pos[1]]
-                        + "O"
-                        + data[new_pos[0]][new_pos[1] + 1 :]
-                    )
                     current_position = new_pos
                     continue
 

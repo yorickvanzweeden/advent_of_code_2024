@@ -6,18 +6,18 @@ authors = ["Yorick van Zweeden <git@yorickvanzweeden.nl>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
+matplotlib = "^3.9.3"
+networkx = "^3.4.2"
+numpy = "^2.2.0"
+pydantic = "^2.10.3"
 python = "^3.10"
 requests = "^2.32.3"
-types-requests = "^2.32.0.20241016"
-numpy = "^2.1.3"
-pydantic = "^2.10.3"
-networkx = "^3.4.2"
-matplotlib = "^3.9.3"
 tqdm = "^4.67.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
 devpi-client = "^6.0.5"
+line-profiler-pycharm = "^1.2.0"
 mypy = "^1.4.1"
 pre-commit = "^3.3.3"
 pytest = "^7.4.0"
@@ -28,6 +28,7 @@ pytest-mock = "^3.11.1"
 pytest-runner = "^6.0.0"
 ruff = "^0.0.284"
 shellcheck-py = "^0.9.0.5"
+types-requests = "^2.32.0.20241016"
 
 [build-system]
 requires = ["poetry-core"]

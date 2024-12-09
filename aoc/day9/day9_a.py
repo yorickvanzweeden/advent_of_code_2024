@@ -1,8 +1,11 @@
 from collections import deque
 
+from line_profiler_pycharm import profile
+
 from aoc import get_input
 
 
+@profile
 def main() -> None:
     data = get_input(9).strip()
 

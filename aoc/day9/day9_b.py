@@ -1,5 +1,8 @@
 from collections import defaultdict
 
+from line_profiler_pycharm import profile
+from tqdm import tqdm
+
 from aoc import get_input
 
 
@@ -21,9 +24,9 @@ def compose_order(
     return order
 
 
+@profile
 def main() -> None:
     data = get_input(9).strip()
-    data = "2333133121414131402"
     diskmap = [int(c) for c in data]
     files_rle = [count for i, count in enumerate(diskmap) if i % 2 == 0]
     free_rle = [count for i, count in enumerate(diskmap) if i % 2 == 1]
@@ -32,7 +35,7 @@ def main() -> None:
     positions: dict[int, list[tuple[int, int]]] = defaultdict(list)
     compose_order(files_rle, free_rle, positions)
 
-    for file_index, file_count in reversed(list(enumerate(files_rle))):
+    for file_index, file_count in tqdm(reversed(list(enumerate(files_rle)))):
         for free_index, free_count in enumerate(free_rle):
             # Skip if file is unmovable
             if file_count > largest_free_space:
@@ -61,7 +64,7 @@ def main() -> None:
                 # Remove file
                 files_rle[file_index] -= file_count
 
-                compose_order(files_rle, free_rle, positions)
+                # compose_order(files_rle, free_rle, positions)
                 break
 
     order = compose_order(files_rle, free_rle, positions)

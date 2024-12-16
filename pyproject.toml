@@ -13,6 +13,8 @@ pydantic = "^2.10.3"
 python = "^3.10"
 requests = "^2.32.3"
 tqdm = "^4.67.1"
+pulp = "^2.9.0"
+scikit-learn = "^1.6.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
